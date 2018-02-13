@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-porra-create',
@@ -15,7 +15,7 @@ export class PorraCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  savePorra() {
+  addPorra() {
     this.http.post('http://localhost:3000/api/porras', this.porra)
       .subscribe(res => {
           let id = res['id'];

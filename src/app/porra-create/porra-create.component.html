@@ -2,7 +2,7 @@
   <h1>Crear nueva Porra</h1>
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="savePorra()" #porraForm="ngForm">
+      <form (ngSubmit)="addPorra()" #porraForm="ngForm">
         <div class="form-group">
           <label for="name">Nombre</label>
           <input type="text" class="form-control" [(ngModel)]="porra.nombre" name="nombre" required>
