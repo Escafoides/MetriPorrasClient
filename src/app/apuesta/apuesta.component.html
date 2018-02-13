@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Apuesta</h1>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Participante</th>
+          <th>Equipo Local</th>
+          <th>Equipo Visitante</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apuesta of apuestas">
+          <td>{{ apuesta.participante }}</td>
+          <td>{{ apuesta.local }}</td>
+          <td>{{ apuesta.visitante }}</td>
+          <td class="row">
+              <button class="btn btn-danger" type="button" (click)="deleteApuesta(apuesta.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  
+</div>

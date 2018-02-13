@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Crear nueva Porra</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="savePorra()" #porraForm="ngForm">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="porra.nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Local</label>
+          <input type="text" class="form-control" [(ngModel)]="porra.local" name="local" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Visitante</label>
+          <input type="text" class="form-control" [(ngModel)]="porra.visitante" name="visitante" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Fecha Porra</label>
+          <input type="date" class="form-control" [(ngModel)]="porra.fecha" name="fecha" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Importe Porra</label>
+          <input type="number" class="form-control" [(ngModel)]="porra.importe" name="importe" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!porraForm.form.valid">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
