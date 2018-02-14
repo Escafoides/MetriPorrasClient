@@ -53,7 +53,13 @@ export class ApuestaComponent implements OnInit {
   }
 
   cleanForm(){
-    var form = document.getElementById("myForm");
+    var hijos = document.getElementById("myForm").children;
+    for (var i = 0; i < hijos.length; i++) {
+      var hijo = hijos[i].children;
+      if (hijo.length > 1){
+        var input = (<HTMLInputElement>hijo[1]);
+        input.value = "";
+      }
+    }
   }
-
 }
