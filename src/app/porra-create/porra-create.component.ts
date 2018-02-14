@@ -16,7 +16,7 @@ export class PorraCreateComponent implements OnInit {
   }
 
   addPorra() {
-    this.http.post('http://localhost:3000/api/porras', this.porra)
+    this.http.post('http://192.168.1.101:3000/api/porras', this.porra)
       .subscribe(res => {
           let id = res['id'];
           this.router.navigate(['/porras']);

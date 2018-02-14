@@ -7,6 +7,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Nombre</th>
         <th>Equipo Local</th>
         <th>Equipo Visitante</th>
@@ -18,6 +19,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let porra of porras">
+        <td class="row">
+            <button class="btn btn-danger" type="button" (click)="deletePorra(porra.id)">X</button>
+        </td>
         <td>{{ porra.nombre }}</td>
         <td>{{ porra.local }}</td>
         <td>{{ porra.visitante }}</td>

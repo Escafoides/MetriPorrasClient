@@ -26,7 +26,7 @@ export class AlertComponent {
             this.alerts.push(alert);
 
             // remove alert after 5 seconds
-            setTimeout(() => this.removeAlert(alert), 3000);
+            setTimeout(() => this.removeAlert(alert), 5000);
         });
     }
 
