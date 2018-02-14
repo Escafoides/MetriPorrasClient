@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractControl } from '@angular/forms';
+import { AlertService } from '../_services/index';
+
 
 
 @Component({
@@ -10,11 +12,12 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./apuesta.component.css']
 })
 export class ApuestaComponent implements OnInit {
+  
   apuestas: any;
   porraId:string;
   newApuesta =  {} ;
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private alertService: AlertService) { }
 
   ngOnInit() {
     this.porraId = this.route.snapshot.params['id'];
@@ -40,26 +43,65 @@ export class ApuestaComponent implements OnInit {
 
   addApuesta() {
     var url = 'http://localhost:3000/api/porras/'+this.porraId+'/apuestas';
-    this.http.post(url, this.newApuesta)
-    .subscribe(res => {
-      let id = res['porraId'];
-      this.getApuestas(id);
+    if(this.validarApuesta(this.newApuesta)){
+      this.http.post(url, this.newApuesta)
+      .subscribe(res => {
+        let id = res['porraId'];
+        this.getApuestas(id);
+        this.cleanForm();
+        this.success("Apuesta Creada");
+        this.router.navigate(['porras',id,'apuestas']);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+    }else{
+      this.error("Ya se ha apostado por ese resultado");
       this.cleanForm();
-      this.router.navigate(['porras',id,'apuestas']);
-      }, (err) => {
-        console.log(err);
-      }
-    );
+    }
   }
 
   cleanForm(){
-    var hijos = document.getElementById("myForm").children;
-    for (var i = 0; i < hijos.length; i++) {
-      var hijo = hijos[i].children;
-      if (hijo.length > 1){
-        var input = (<HTMLInputElement>hijo[1]);
+    var formGroup = document.getElementById("myForm").children;
+    for (var i = 0; i < formGroup.length; i++) {
+      var formInputArray = formGroup[i].children;
+      if (formInputArray.length > 1){
+        var input = (<HTMLInputElement>formInputArray[1]);
         input.value = "";
+      }else{
+        var button = (<HTMLButtonElement>formInputArray[0]);
+        button.disabled = true;
       }
     }
+  }
+
+  validarApuesta(apuesta) {
+    var validado = true;
+    this.apuestas.forEach(function(a){
+      if(a.local == apuesta.local && a.visitante == apuesta.visitante){
+        validado = false;  
+      }
+    });
+    return validado;
+  }
+
+  success(message: string) {
+    this.alertService.success(message);
+}
+
+  error(message: string) {
+      this.alertService.error(message);
+  }
+
+  info(message: string) {
+      this.alertService.info(message);
+  }
+
+  warn(message: string) {
+      this.alertService.warn(message);
+  }
+
+  clear() {
+      this.alertService.clear();
   }
 }

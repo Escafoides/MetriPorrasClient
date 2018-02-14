@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,6 +9,10 @@ import { PorraComponent } from './porra/porra.component';
 import { ApuestaComponent } from './apuesta/apuesta.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PorraCreateComponent } from './porra-create/porra-create.component';
+
+// import alert service and component
+import { AlertComponent } from './_directives/index';
+import { AlertService } from './_services/index';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +41,7 @@ const appRoutes: Routes = [
     AppComponent,
     PorraComponent,
     ApuestaComponent,
+    AlertComponent,
     PorraCreateComponent
   ],
   imports: [
@@ -48,7 +53,9 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [],
+  providers: [
+    AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
