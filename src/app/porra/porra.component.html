@@ -12,6 +12,7 @@
         <th>Equipo Visitante</th>
         <th>Fecha Porra</th>
         <th>Importe de la Porra</th>
+        <th>Numero de Apuestas</th>
 
       </tr>
     </thead>
@@ -22,6 +23,7 @@
         <td>{{ porra.visitante }}</td>
         <td>{{ porra.fecha | date}}</td>
         <td>{{ porra.importe}}</td>
+        <td>{{ porra.apuestas.length }}</td>
         <td>
           <a [routerLink]="[ porra.id, 'apuestas']"> Mostrar Apuestas</a>
         </td>
