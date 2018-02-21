@@ -14,7 +14,7 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
   styleUrls: ['./apuesta.component.css'],
   animations: [
 
-    trigger('apuestasAnimation', [
+    trigger('apuestas', [
       transition('* => *', [
 
         query(':enter', style({ opacity: 0 }), {optional: true}),
@@ -62,7 +62,7 @@ export class ApuestaComponent implements OnInit {
     this.http.delete('http://192.168.1.101:3000/api/apuestas/'+id)
       .subscribe(res => {
           this.getApuestas(this.route.snapshot.params['id']);
-          this.router.navigate(['porras',this.route.snapshot.params['id'],'apuestas']);
+          //this.router.navigate(['porras',this.route.snapshot.params['id'],'apuestas']);
         }, (err) => {
           console.log(err);
         }
@@ -79,7 +79,7 @@ export class ApuestaComponent implements OnInit {
           this.getApuestas(id);
           this.cleanForm();
           this.success(this.apuestaCreada[this.getRandom()]);
-          this.router.navigate(['porras',id,'apuestas']);
+          //this.router.navigate(['porras',id,'apuestas']);
           }, (err) => {
             console.log(err);
           }
